@@ -1,0 +1,178 @@
+id: https://codeforde.org/schema/meta
+name: de-meta
+description: |-
+  Information about public organisations, their projects, products & service providers based on [schema.org](http://schema.org)
+license: https://creativecommons.org/publicdomain/zero/1.0/
+default_curi_maps:
+  - semweb_context
+imports:
+  - linkml:types
+prefixes:
+  m: https://codeforde.org/schema/meta
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  prov: http://www.w3.org/ns/prov#
+
+  # DATA PREFIXES
+  P: http://example.org/P/
+  ROR: http://example.org/ror/
+  CODE: http://example.org/code/
+  GEO: http://example.org/geoloc/
+default_prefix: m
+default_range: string
+
+emit_prefixes:
+  - rdf
+  - rdfs
+  - xsd
+#  - skos
+
+classes:
+  Organization:
+    description: >-
+      An organization such as a government, political party, state, municipality, city, NGO, company, university or any other association
+    is_a: NamedThing
+    class_uri: schema:Organization
+    slots:
+      - legal_form
+      - address
+      - mission_statement
+      - founding_date
+      - founding_location
+
+  Project:
+    description: >-
+      An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.
+    is_a: NamedThing
+    class_uri: schema:Project
+    slots:
+      - start_date
+      - end_date
+      - is_current
+
+  Product:
+    description: >-
+      Any offered product or service. For example: Managed Kubernetes, FIT-Connect, OK.Finanzen, owi21 
+    is_a: NamedThing
+    class_uri: schema:Product
+    slots:
+      - start_date
+      - end_date
+      - is_current
+  
+  Place:
+    slots:
+      - id
+      - name
+      
+  Address:
+    class_uri: schema:PostalAddress
+    slots:
+      - street
+      - city
+      - postal_code
+
+  Event:
+    slots:
+      - start_date
+      - end_date
+      - duration
+      - is_current
+    close_mappings:
+      - schema:Event
+
+  Concept:
+    is_a: NamedThing
+
+  Relationship:
+    slots:
+      - start_date
+      - end_date
+      - related_to
+      - type
+
+  WithLocation:
+    mixin: true
+    slots:
+      - in_location
+
+  NamedThing:
+    description: >-
+      A generic grouping for any identifiable entity
+    slots:
+      - id
+      - name
+      - description
+      - image
+      - url
+    close_mappings:
+     - schema:Thing
+
+  HasAliases:
+    description: >-
+      A mixin applied to any class that can have aliases/alternateNames
+    mixin: true
+    attributes:
+      aliases:
+        multivalued: true
+        exact_mappings:
+          - schema:alternateName
+
+
+slots:
+  id:
+    identifier: true
+    slot_uri: schema:identifier
+  name:
+    slot_uri: schema:name
+  legal_form:
+  description:
+    slot_uri: schema:description
+  image:
+    slot_uri: schema:image
+  email:
+    slot_uri: schema:email
+  url:
+    slot_uri: schema:URL
+  is_current:
+    range: boolean
+  in_location:
+    range: Place
+  address:
+    description: >-
+      The address at which a organization has its headquarters
+    range: Address
+    inlined: true
+  related_to:
+  type:
+  street:
+  city:
+  mission_statement:
+  founding_date:
+  founding_location:
+    range: Place
+  postal_code:
+    range: string
+  start_date:
+    slot_uri: prov:startedAtTime
+    range: date
+  duration:
+    range: float
+
+  end_date:
+    slot_uri: prov:endedAtTime
+    range: date
+
+  organizations:
+    range: Organization
+    inlined_as_list: true
+    inlined: true
+    multivalued: true
+    
+enums:
+
+
+subsets:
+  basic_subset:
+    description: A subset of the schema that handles basic information
