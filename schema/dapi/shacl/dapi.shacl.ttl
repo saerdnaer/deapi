@@ -1,0 +1,226 @@
+@prefix m: <https://codeforde.org/schema/meta> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+schema:Organization a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "An organization such as a government, political party, state, municipality, city, NGO, company, university or any other association" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path schema:image ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path m:legal_form ],
+        [ sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path schema:URL ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path m:founding_date ],
+        [ sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path schema:name ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path m:mission_statement ],
+        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema:identifier ],
+        [ sh:class m:Place ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path m:founding_location ],
+        [ sh:class schema:PostalAddress ;
+            sh:description "The address at which a organization has its headquarters" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 1 ;
+            sh:path m:address ],
+        [ sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path schema:description ] ;
+    sh:targetClass schema:Organization .
+
+schema:Product a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Any offered product or service. For example: Managed Kubernetes, FIT-Connect, OK.Finanzen, owi21 " ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path prov:endedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path m:is_current ],
+        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema:description ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path prov:startedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema:name ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema:identifier ],
+        [ sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path schema:URL ],
+        [ sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path schema:image ] ;
+    sh:targetClass schema:Product .
+
+schema:Project a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path prov:startedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema:name ],
+        [ sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path schema:URL ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema:identifier ],
+        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema:description ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path prov:endedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path schema:image ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path m:is_current ] ;
+    sh:targetClass schema:Project .
+
+m:Concept a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema:name ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema:identifier ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema:description ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema:URL ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema:image ] ;
+    sh:targetClass m:Concept .
+
+m:Event a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path m:duration ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path m:is_current ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path prov:endedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path prov:startedAtTime ] ;
+    sh:targetClass m:Event .
+
+m:HasAliases a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A mixin applied to any class that can have aliases/alternateNames" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:order 0 ;
+            sh:path m:aliases ] ;
+    sh:targetClass m:HasAliases .
+
+m:NamedThing a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A generic grouping for any identifiable entity" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema:URL ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema:name ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema:description ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema:image ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema:identifier ] ;
+    sh:targetClass m:NamedThing .
+
+m:Relationship a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path prov:endedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path prov:startedAtTime ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path m:type ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path m:related_to ] ;
+    sh:targetClass m:Relationship .
+
+m:WithLocation a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class m:Place ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path m:in_location ] ;
+    sh:targetClass m:WithLocation .
+
+schema:PostalAddress a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path m:postal_code ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path m:city ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path m:street ] ;
+    sh:targetClass schema:PostalAddress .
+
+m:Place a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema:identifier ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema:name ] ;
+    sh:targetClass m:Place .
+

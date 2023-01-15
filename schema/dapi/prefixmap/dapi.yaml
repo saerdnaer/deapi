@@ -1,0 +1,25 @@
+{
+   "CODE": "http://example.org/code/",
+   "GEO": "http://example.org/geoloc/",
+   "P": "http://example.org/P/",
+   "ROR": "http://example.org/ror/",
+   "linkml": "https://w3id.org/linkml/",
+   "m": "https://codeforde.org/schema/meta",
+   "prov": "http://www.w3.org/ns/prov#",
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+   "schema": "http://schema.org/",
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
+   "Address": {
+      "@id": "schema:PostalAddress"
+   },
+   "Organization": {
+      "@id": "schema:Organization"
+   },
+   "Product": {
+      "@id": "schema:Product"
+   },
+   "Project": {
+      "@id": "schema:Project"
+   }
+}

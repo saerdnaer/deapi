@@ -1,0 +1,352 @@
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix m: <https://codeforde.org/schema/meta> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+m: a owl:Ontology ;
+    rdfs:label "de-meta" ;
+    IAO:0000700 m:Address,
+        m:Event,
+        m:HasAliases,
+        m:NamedThing,
+        m:Place,
+        m:Relationship,
+        m:WithLocation ;
+    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
+    linkml:generation_date "2023-01-15T16:36:28" ;
+    linkml:metamodel_version "1.7.0" ;
+    linkml:source_file "dapi.yaml" ;
+    linkml:source_file_date "2023-01-15T16:35:52" ;
+    linkml:source_file_size 3537 .
+
+m:Concept a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Concept" ;
+    rdfs:subClassOf m:NamedThing .
+
+m:Product a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Product" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:startedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:endedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty m:is_current ],
+        m:NamedThing ;
+    skos:definition "Any offered product or service. For example: Managed Kubernetes, FIT-Connect, OK.Finanzen, owi21 " ;
+    skos:exactMatch schema:Product .
+
+m:Project a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Project" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:endedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:startedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty m:is_current ],
+        m:NamedThing ;
+    skos:definition "An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim." ;
+    skos:exactMatch schema:Project .
+
+m:organizations a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "organizations" ;
+    rdfs:range m:Organization .
+
+linkml:SubsetDefinition a owl:Class ;
+    rdfs:label "subset_definition" .
+
+linkml:TypeDefinition a owl:Class ;
+    rdfs:label "type_definition" .
+
+linkml:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
+
+schema:email a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "email" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:email .
+
+m:Event a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Event" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty m:is_current ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:startedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:endedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Float ;
+            owl:onProperty m:duration ] ;
+    skos:closeMatch schema:Event .
+
+m:HasAliases a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "HasAliases" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty m:aliases ],
+        linkml:mixin ;
+    skos:definition "A mixin applied to any class that can have aliases/alternateNames" .
+
+m:Organization a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Organization" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass m:Place ;
+            owl:onProperty m:founding_location ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:mission_statement ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:legal_form ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass m:Address ;
+            owl:onProperty m:address ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:founding_date ],
+        m:NamedThing ;
+    skos:definition "An organization such as a government, political party, state, municipality, city, NGO, company, university or any other association" ;
+    skos:exactMatch schema:Organization .
+
+m:Relationship a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Relationship" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:endedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:type ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty prov:startedAtTime ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:related_to ] .
+
+m:WithLocation a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "WithLocation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass m:Place ;
+            owl:onProperty m:in_location ],
+        linkml:mixin .
+
+m:address a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "address" ;
+    rdfs:range m:Address ;
+    skos:definition "The address at which a organization has its headquarters" .
+
+m:aliases a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "aliases" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:alternateName .
+
+m:city a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "city" ;
+    rdfs:range linkml:String .
+
+m:duration a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "duration" ;
+    rdfs:range linkml:Float .
+
+m:founding_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "founding_date" ;
+    rdfs:range linkml:String .
+
+m:founding_location a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "founding_location" ;
+    rdfs:range m:Place .
+
+m:in_location a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "in_location" ;
+    rdfs:range m:Place .
+
+m:legal_form a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "legal_form" ;
+    rdfs:range linkml:String .
+
+m:mission_statement a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "mission_statement" ;
+    rdfs:range linkml:String .
+
+m:postal_code a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "postal_code" ;
+    rdfs:range linkml:String .
+
+m:related_to a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "related_to" ;
+    rdfs:range linkml:String .
+
+m:street a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "street" ;
+    rdfs:range linkml:String .
+
+m:type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "type" ;
+    rdfs:range linkml:String .
+
+schema:URL a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "url" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:URL .
+
+schema:description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "description" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:description .
+
+schema:image a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "image" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:image .
+
+schema:identifier a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "id" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:identifier .
+
+schema:name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    rdfs:range linkml:String ;
+    skos:exactMatch schema:name .
+
+m:Address a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Address" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:postal_code ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:city ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty m:street ] ;
+    skos:exactMatch schema:PostalAddress .
+
+m:is_current a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "is_current" ;
+    rdfs:range linkml:Boolean .
+
+prov:endedAtTime a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "end_date" ;
+    rdfs:range linkml:Date ;
+    skos:exactMatch prov:endedAtTime .
+
+prov:startedAtTime a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "start_date" ;
+    rdfs:range linkml:Date ;
+    skos:exactMatch prov:startedAtTime .
+
+m:NamedThing a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "NamedThing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:image ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:description ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:identifier ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:URL ] ;
+    skos:closeMatch schema:Thing ;
+    skos:definition "A generic grouping for any identifiable entity" .
+
+m:Place a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Place" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:identifier ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema:name ] .
+
+linkml:ClassDefinition a owl:Class ;
+    rdfs:label "class_definition" .
+
+linkml:SlotDefinition a owl:Class ;
+    rdfs:label "slot_definition" .
+
+

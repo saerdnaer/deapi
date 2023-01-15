@@ -1,0 +1,257 @@
+{
+    "$defs": {
+        "Address": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "postal_code": {
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                }
+            },
+            "title": "Address",
+            "type": "object"
+        },
+        "Concept": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Concept",
+            "type": "object"
+        },
+        "Event": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "duration": {
+                    "type": "number"
+                },
+                "end_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "is_current": {
+                    "type": "boolean"
+                },
+                "start_date": {
+                    "format": "date",
+                    "type": "string"
+                }
+            },
+            "title": "Event",
+            "type": "object"
+        },
+        "NamedThing": {
+            "additionalProperties": false,
+            "description": "A generic grouping for any identifiable entity",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "NamedThing",
+            "type": "object"
+        },
+        "Organization": {
+            "additionalProperties": false,
+            "description": "An organization such as a government, political party, state, municipality, city, NGO, company, university or any other association",
+            "properties": {
+                "address": {
+                    "$ref": "#/$defs/Address",
+                    "description": "The address at which a organization has its headquarters"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "founding_date": {
+                    "type": "string"
+                },
+                "founding_location": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "legal_form": {
+                    "type": "string"
+                },
+                "mission_statement": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Organization",
+            "type": "object"
+        },
+        "Place": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Place",
+            "type": "object"
+        },
+        "Product": {
+            "additionalProperties": false,
+            "description": "Any offered product or service. For example: Managed Kubernetes, FIT-Connect, OK.Finanzen, owi21",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "is_current": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Product",
+            "type": "object"
+        },
+        "Project": {
+            "additionalProperties": false,
+            "description": "An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "end_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "is_current": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Project",
+            "type": "object"
+        },
+        "Relationship": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "end_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "related_to": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "title": "Relationship",
+            "type": "object"
+        }
+    },
+    "$id": "https://codeforde.org/schema/meta",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "de-meta",
+    "type": "object",
+    "version": null
+}

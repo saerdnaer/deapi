@@ -1,0 +1,95 @@
+type Address
+  {
+    street: String
+    city: String
+    postalCode: String
+  }
+
+type Concept
+  {
+    id: String!
+    name: String
+    description: String
+    image: String
+    url: String
+  }
+
+type Event
+  {
+    startDate: Date
+    endDate: Date
+    duration: Float
+    isCurrent: Boolean
+  }
+
+interface HasAliases
+  {
+    aliases: [String]
+  }
+
+type NamedThing
+  {
+    id: String!
+    name: String
+    description: String
+    image: String
+    url: String
+  }
+
+type Organization
+  {
+    id: String!
+    name: String
+    description: String
+    image: String
+    url: String
+    legalForm: String
+    address: Address
+    missionStatement: String
+    foundingDate: String
+    foundingLocation: Place
+  }
+
+type Place
+  {
+    id: String!
+    name: String
+  }
+
+type Product
+  {
+    id: String!
+    name: String
+    description: String
+    image: String
+    url: String
+    startDate: Date
+    endDate: Date
+    isCurrent: Boolean
+  }
+
+type Project
+  {
+    id: String!
+    name: String
+    description: String
+    image: String
+    url: String
+    startDate: Date
+    endDate: Date
+    isCurrent: Boolean
+  }
+
+type Relationship
+  {
+    startDate: Date
+    endDate: Date
+    relatedTo: String
+    type: String
+  }
+
+interface WithLocation
+  {
+    inLocation: Place
+  }
+

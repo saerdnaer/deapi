@@ -1,0 +1,80 @@
+message Address
+ {
+  string street = 0
+  string city = 0
+  string postalCode = 0
+ }
+message Concept
+ {
+  string id = 0
+  string name = 0
+  string description = 0
+  string image = 0
+  string url = 0
+ }
+message Event
+ {
+  date startDate = 0
+  date endDate = 0
+  float duration = 0
+  boolean isCurrent = 0
+ }
+// A generic grouping for any identifiable entity
+message NamedThing
+ {
+  string id = 0
+  string name = 0
+  string description = 0
+  string image = 0
+  string url = 0
+ }
+// An organization such as a government, political party, state, municipality, city, NGO, company, university or any other association
+message Organization
+ {
+  string id = 0
+  string name = 0
+  string description = 0
+  string image = 0
+  string url = 0
+  string legalForm = 0
+  address address = 0
+  string missionStatement = 0
+  string foundingDate = 0
+  place foundingLocation = 0
+ }
+message Place
+ {
+  string id = 0
+  string name = 0
+ }
+// Any offered product or service. For example: Managed Kubernetes, FIT-Connect, OK.Finanzen, owi21 
+message Product
+ {
+  string id = 0
+  string name = 0
+  string description = 0
+  string image = 0
+  string url = 0
+  date startDate = 0
+  date endDate = 0
+  boolean isCurrent = 0
+ }
+// An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.
+message Project
+ {
+  string id = 0
+  string name = 0
+  string description = 0
+  string image = 0
+  string url = 0
+  date startDate = 0
+  date endDate = 0
+  boolean isCurrent = 0
+ }
+message Relationship
+ {
+  date startDate = 0
+  date endDate = 0
+  string relatedTo = 0
+  string type = 0
+ }

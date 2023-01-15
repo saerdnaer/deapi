@@ -1,0 +1,767 @@
+{
+  "name": "de-meta",
+  "description": "Information about public organisations, their projects, products & service providers based on [schema.org](http://schema.org)",
+  "id": "https://codeforde.org/schema/meta",
+  "imports": [
+    "linkml:types"
+  ],
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "prefixes": [
+    {
+      "prefix_prefix": "m",
+      "prefix_reference": "https://codeforde.org/schema/meta"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    {
+      "prefix_prefix": "rdfs",
+      "prefix_reference": "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    {
+      "prefix_prefix": "prov",
+      "prefix_reference": "http://www.w3.org/ns/prov#"
+    },
+    {
+      "prefix_prefix": "P",
+      "prefix_reference": "http://example.org/P/"
+    },
+    {
+      "prefix_prefix": "ROR",
+      "prefix_reference": "http://example.org/ror/"
+    },
+    {
+      "prefix_prefix": "CODE",
+      "prefix_reference": "http://example.org/code/"
+    },
+    {
+      "prefix_prefix": "GEO",
+      "prefix_reference": "http://example.org/geoloc/"
+    }
+  ],
+  "emit_prefixes": [
+    "rdf",
+    "rdfs",
+    "xsd"
+  ],
+  "default_curi_maps": [
+    "semweb_context"
+  ],
+  "default_prefix": "m",
+  "default_range": "string",
+  "subsets": [
+    {
+      "name": "basic_subset",
+      "definition_uri": "https://codeforde.org/schema/metaBasicSubset",
+      "description": "A subset of the schema that handles basic information",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "@type": "SubsetDefinition"
+    }
+  ],
+  "types": [
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "description": "a complete URI",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "comments": [
+        "Used for inheritence and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    }
+  ],
+  "slots": [
+    {
+      "name": "id",
+      "definition_uri": "https://codeforde.org/schema/metaid",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "NamedThing",
+      "domain_of": [
+        "Place",
+        "NamedThing"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://codeforde.org/schema/metaname",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://schema.org/name"
+      ],
+      "slot_uri": "http://schema.org/name",
+      "owner": "NamedThing",
+      "domain_of": [
+        "Place",
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "legal_form",
+      "definition_uri": "https://codeforde.org/schema/metalegal_form",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metalegal_form",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://codeforde.org/schema/metadescription",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://schema.org/description"
+      ],
+      "slot_uri": "http://schema.org/description",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "image",
+      "definition_uri": "https://codeforde.org/schema/metaimage",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://schema.org/image"
+      ],
+      "slot_uri": "http://schema.org/image",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "email",
+      "definition_uri": "https://codeforde.org/schema/metaemail",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://schema.org/email"
+      ],
+      "slot_uri": "http://schema.org/email",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "url",
+      "definition_uri": "https://codeforde.org/schema/metaurl",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://schema.org/URL"
+      ],
+      "slot_uri": "http://schema.org/URL",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_current",
+      "definition_uri": "https://codeforde.org/schema/metais_current",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metais_current",
+      "owner": "Event",
+      "domain_of": [
+        "Project",
+        "Product",
+        "Event"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "in_location",
+      "definition_uri": "https://codeforde.org/schema/metain_location",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metain_location",
+      "owner": "WithLocation",
+      "domain_of": [
+        "WithLocation"
+      ],
+      "range": "Place",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "address",
+      "definition_uri": "https://codeforde.org/schema/metaaddress",
+      "description": "The address at which a organization has its headquarters",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metaaddress",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "Address",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "related_to",
+      "definition_uri": "https://codeforde.org/schema/metarelated_to",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metarelated_to",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "type",
+      "definition_uri": "https://codeforde.org/schema/metatype",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metatype",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "street",
+      "definition_uri": "https://codeforde.org/schema/metastreet",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metastreet",
+      "owner": "Address",
+      "domain_of": [
+        "Address"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "city",
+      "definition_uri": "https://codeforde.org/schema/metacity",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metacity",
+      "owner": "Address",
+      "domain_of": [
+        "Address"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "mission_statement",
+      "definition_uri": "https://codeforde.org/schema/metamission_statement",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metamission_statement",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "founding_date",
+      "definition_uri": "https://codeforde.org/schema/metafounding_date",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metafounding_date",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "founding_location",
+      "definition_uri": "https://codeforde.org/schema/metafounding_location",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metafounding_location",
+      "owner": "Organization",
+      "domain_of": [
+        "Organization"
+      ],
+      "range": "Place",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postal_code",
+      "definition_uri": "https://codeforde.org/schema/metapostal_code",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metapostal_code",
+      "owner": "Address",
+      "domain_of": [
+        "Address"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "start_date",
+      "definition_uri": "https://codeforde.org/schema/metastart_date",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://www.w3.org/ns/prov#startedAtTime"
+      ],
+      "slot_uri": "http://www.w3.org/ns/prov#startedAtTime",
+      "owner": "Relationship",
+      "domain_of": [
+        "Project",
+        "Product",
+        "Event",
+        "Relationship"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "duration",
+      "definition_uri": "https://codeforde.org/schema/metaduration",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metaduration",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "end_date",
+      "definition_uri": "https://codeforde.org/schema/metaend_date",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "http://www.w3.org/ns/prov#endedAtTime"
+      ],
+      "slot_uri": "http://www.w3.org/ns/prov#endedAtTime",
+      "owner": "Relationship",
+      "domain_of": [
+        "Project",
+        "Product",
+        "Event",
+        "Relationship"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "organizations",
+      "definition_uri": "https://codeforde.org/schema/metaorganizations",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slot_uri": "https://codeforde.org/schema/metaorganizations",
+      "multivalued": true,
+      "range": "Organization",
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "hasAliases__aliases",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "exact_mappings": [
+        "http://schema.org/alternateName"
+      ],
+      "slot_uri": "https://codeforde.org/schema/metaaliases",
+      "multivalued": true,
+      "alias": "aliases",
+      "owner": "HasAliases",
+      "domain_of": [
+        "HasAliases"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Organization",
+      "definition_uri": "https://codeforde.org/schema/metaOrganization",
+      "description": "An organization such as a government, political party, state, municipality, city, NGO, company, university or any other association",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "schema:Organization"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "image",
+        "url",
+        "legal_form",
+        "address",
+        "mission_statement",
+        "founding_date",
+        "founding_location"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Organization",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Project",
+      "definition_uri": "https://codeforde.org/schema/metaProject",
+      "description": "An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "schema:Project"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "image",
+        "url",
+        "start_date",
+        "end_date",
+        "is_current"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Project",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Product",
+      "definition_uri": "https://codeforde.org/schema/metaProduct",
+      "description": "Any offered product or service. For example: Managed Kubernetes, FIT-Connect, OK.Finanzen, owi21 ",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "schema:Product"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "image",
+        "url",
+        "start_date",
+        "end_date",
+        "is_current"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Product",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Place",
+      "definition_uri": "https://codeforde.org/schema/metaPlace",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slots": [
+        "id",
+        "name"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://codeforde.org/schema/metaPlace",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Address",
+      "definition_uri": "https://codeforde.org/schema/metaAddress",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mappings": [
+        "schema:PostalAddress"
+      ],
+      "slots": [
+        "street",
+        "city",
+        "postal_code"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/PostalAddress",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Event",
+      "definition_uri": "https://codeforde.org/schema/metaEvent",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "close_mappings": [
+        "schema:Event"
+      ],
+      "slots": [
+        "start_date",
+        "end_date",
+        "duration",
+        "is_current"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://codeforde.org/schema/metaEvent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Concept",
+      "definition_uri": "https://codeforde.org/schema/metaConcept",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "image",
+        "url"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://codeforde.org/schema/metaConcept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Relationship",
+      "definition_uri": "https://codeforde.org/schema/metaRelationship",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "slots": [
+        "start_date",
+        "end_date",
+        "related_to",
+        "type"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://codeforde.org/schema/metaRelationship",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "WithLocation",
+      "definition_uri": "https://codeforde.org/schema/metaWithLocation",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mixin": true,
+      "slots": [
+        "in_location"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://codeforde.org/schema/metaWithLocation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "NamedThing",
+      "definition_uri": "https://codeforde.org/schema/metaNamedThing",
+      "description": "A generic grouping for any identifiable entity",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "close_mappings": [
+        "schema:Thing"
+      ],
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "image",
+        "url"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://codeforde.org/schema/metaNamedThing",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "HasAliases",
+      "definition_uri": "https://codeforde.org/schema/metaHasAliases",
+      "description": "A mixin applied to any class that can have aliases/alternateNames",
+      "from_schema": "https://codeforde.org/schema/meta",
+      "mixin": true,
+      "slots": [
+        "hasAliases__aliases"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "aliases",
+          "exact_mappings": [
+            "schema:alternateName"
+          ],
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://codeforde.org/schema/metaHasAliases",
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.7.0",
+  "source_file": "dapi.yaml",
+  "source_file_date": "2023-01-15T16:35:52",
+  "source_file_size": 3537,
+  "generation_date": "2023-01-15T16:36:04",
+  "@type": "SchemaDefinition",
+  "@context": [
+    "dapi/jsonld/dapi.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    {
+      "@base": "https://codeforde.org/schema/meta"
+    }
+  ]
+}

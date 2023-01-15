@@ -1,0 +1,143 @@
+BASE <https://codeforde.org/schema/meta/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX schema: <http://schema.org/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:dateTime
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+<https://codeforde.org/schema/metaAddress> CLOSED {
+    (  $<https://codeforde.org/schema/metaAddress_tes> (  <https://codeforde.org/schema/metastreet> @linkml:String ? ;
+          <https://codeforde.org/schema/metacity> @linkml:String ? ;
+          <https://codeforde.org/schema/metapostal_code> @linkml:String ?
+       ) ;
+       rdf:type [ schema:PostalAddress ] ?
+    )
+}
+
+<https://codeforde.org/schema/metaConcept> CLOSED {
+    (  $<https://codeforde.org/schema/metaConcept_tes> (  &<https://codeforde.org/schema/metaNamedThing_tes> ;
+          rdf:type [ <https://codeforde.org/schema/metaNamedThing> ] ?
+       ) ;
+       rdf:type [ <https://codeforde.org/schema/metaConcept> ]
+    )
+}
+
+<https://codeforde.org/schema/metaEvent> CLOSED {
+    (  $<https://codeforde.org/schema/metaEvent_tes> (  prov:startedAtTime @linkml:Date ? ;
+          prov:endedAtTime @linkml:Date ? ;
+          <https://codeforde.org/schema/metaduration> @linkml:Float ? ;
+          <https://codeforde.org/schema/metais_current> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <https://codeforde.org/schema/metaEvent> ] ?
+    )
+}
+
+<https://codeforde.org/schema/metaHasAliases> {
+    (  $<https://codeforde.org/schema/metaHasAliases_tes> <https://codeforde.org/schema/metaaliases> @linkml:String * ;
+       rdf:type [ <https://codeforde.org/schema/metaHasAliases> ] ?
+    )
+}
+
+<https://codeforde.org/schema/metaNamedThing>  (
+    CLOSED {
+       (  $<https://codeforde.org/schema/metaNamedThing_tes> (  schema:name @linkml:String ? ;
+             schema:description @linkml:String ? ;
+             schema:image @linkml:String ? ;
+             schema:URL @linkml:String ?
+          ) ;
+          rdf:type [ <https://codeforde.org/schema/metaNamedThing> ]
+       )
+    } OR @<https://codeforde.org/schema/metaConcept> OR @<https://codeforde.org/schema/metaOrganization> OR
+    @<https://codeforde.org/schema/metaProduct> OR @<https://codeforde.org/schema/metaProject>
+)
+
+<https://codeforde.org/schema/metaOrganization> CLOSED {
+    (  $<https://codeforde.org/schema/metaOrganization_tes> (  &<https://codeforde.org/schema/metaNamedThing_tes> ;
+          rdf:type [ <https://codeforde.org/schema/metaNamedThing> ] ? ;
+          <https://codeforde.org/schema/metalegal_form> @linkml:String ? ;
+          <https://codeforde.org/schema/metaaddress> @<https://codeforde.org/schema/metaAddress> ? ;
+          <https://codeforde.org/schema/metamission_statement> @linkml:String ? ;
+          <https://codeforde.org/schema/metafounding_date> @linkml:String ? ;
+          <https://codeforde.org/schema/metafounding_location> @<https://codeforde.org/schema/metaPlace> ?
+       ) ;
+       rdf:type [ schema:Organization ]
+    )
+}
+
+<https://codeforde.org/schema/metaPlace> CLOSED {
+    (  $<https://codeforde.org/schema/metaPlace_tes> schema:name @linkml:String ? ;
+       rdf:type [ <https://codeforde.org/schema/metaPlace> ]
+    )
+}
+
+<https://codeforde.org/schema/metaProduct> CLOSED {
+    (  $<https://codeforde.org/schema/metaProduct_tes> (  &<https://codeforde.org/schema/metaNamedThing_tes> ;
+          rdf:type [ <https://codeforde.org/schema/metaNamedThing> ] ? ;
+          prov:startedAtTime @linkml:Date ? ;
+          prov:endedAtTime @linkml:Date ? ;
+          <https://codeforde.org/schema/metais_current> @linkml:Boolean ?
+       ) ;
+       rdf:type [ schema:Product ]
+    )
+}
+
+<https://codeforde.org/schema/metaProject> CLOSED {
+    (  $<https://codeforde.org/schema/metaProject_tes> (  &<https://codeforde.org/schema/metaNamedThing_tes> ;
+          rdf:type [ <https://codeforde.org/schema/metaNamedThing> ] ? ;
+          prov:startedAtTime @linkml:Date ? ;
+          prov:endedAtTime @linkml:Date ? ;
+          <https://codeforde.org/schema/metais_current> @linkml:Boolean ?
+       ) ;
+       rdf:type [ schema:Project ]
+    )
+}
+
+<https://codeforde.org/schema/metaRelationship> CLOSED {
+    (  $<https://codeforde.org/schema/metaRelationship_tes> (  prov:startedAtTime @linkml:Date ? ;
+          prov:endedAtTime @linkml:Date ? ;
+          <https://codeforde.org/schema/metarelated_to> @linkml:String ? ;
+          <https://codeforde.org/schema/metatype> @linkml:String ?
+       ) ;
+       rdf:type [ <https://codeforde.org/schema/metaRelationship> ] ?
+    )
+}
+
+<https://codeforde.org/schema/metaWithLocation> {
+    (  $<https://codeforde.org/schema/metaWithLocation_tes> <https://codeforde.org/schema/metain_location>
+       @<https://codeforde.org/schema/metaPlace> ? ;
+       rdf:type [ <https://codeforde.org/schema/metaWithLocation> ] ?
+    )
+}
+
+
