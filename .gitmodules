@@ -1,0 +1,3 @@
+[submodule "directus/submodules/display"]
+	path = directus/submodules/display
+	url = https://github.com/lucameusburger/directus-display-extensions.git
